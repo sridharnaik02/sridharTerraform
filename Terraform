@@ -1,1 +1,58 @@
-All about the terraform updates 
+All about the terraform updates :
+Terraform Guide:Terraform Architecture (Basic)
+
+1.Terraform works in 3 main steps:
+
+1️⃣ Write → Terraform code (.tf files)
+2️⃣ Plan → See what Terraform will create
+3️⃣ Apply → Create resources
+
+
+2**.Terraform File Structure (Beginner) :**
+terraform-project/
+│
+├── main.tf        # Main resource definitions
+├── provider.tf    # Cloud provider details
+├── variables.tf   # Input variables
+├── terraform.tfvars  # Variable values
+├── outputs.tf     # Output values
+
+
+👉 As a beginner, you can even start with only main.tf
+
+
+3.Terraform Core Concepts (VERY IMPORTANT)
+1️⃣ Provider
+
+Tells Terraform which cloud to use.
+
+Example:
+
+provider "aws" {
+  region = "ap-south-1"
+}
+
+4.2️⃣ Resource
+
+Actual cloud resource (EC2, S3, VM, VPC, etc.)
+
+resource "aws_instance" "my_ec2" {
+  ami           = "ami-0abcdef"
+  instance_type = "t2.micro"
+}
+
+5.3️⃣ Variables
+
+Used to avoid hard-coding values.
+
+variable "instance_type" {
+  default = "t2.micro"
+}
+
+6.Output
+
+Shows useful info after resource creation.
+
+output "instance_id" {
+  value = aws_instance.my_ec2.id
+}
